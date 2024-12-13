@@ -67,17 +67,21 @@ function generateHexKey() {
 }
 
 function handleGenerate() {
+    // Open ad in new tab
+    window.open('https://www.profitablecpmrate.com/qp0q2thd9n?key=79cc4a35a7e1fce8f3be5b601856e327', '_blank');
+    
+    // Continue with key generation
     const mercyHacksKey = generateUUID();
     document.getElementById('uuidKey').value = mercyHacksKey;
     
-    // Update the code block with the new key
+    // Rest of your existing code
     const codeBlock = document.querySelector('.code-block');
     const codeTemplate = `{
-    "telemetry.machineId": "${mercyHacksKey}",
-    "telemetry.macMachineId": "${mercyHacksKey}",
-    "telemetry.devDeviceId": "${mercyHacksKey}",
-    "telemetry.sqmId": "${mercyHacksKey}"
-}`;
+        "telemetry.machineId": "${mercyHacksKey}",
+        "telemetry.macMachineId": "${mercyHacksKey}",
+        "telemetry.devDeviceId": "${mercyHacksKey}",
+        "telemetry.sqmId": "${mercyHacksKey}"
+    }`;
     codeBlock.textContent = codeTemplate;
     
     // Update title

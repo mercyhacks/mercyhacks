@@ -207,15 +207,49 @@ h1 {
     margin: 0.5rem auto;
     border-radius: 16px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    width: 160px;  /* Match ad width */
-    min-height: 600px;  /* Match ad height */
+    width: 160px;
+    /* Match ad width */
+    min-height: 600px;
+    /* Match ad height */
     display: flex;
     justify-content: center;
+}
+
+/* Desktop ad styles */
+.desktop-ad {
+    display: flex;
+    justify-content: center;
+    width: 160px;
+    min-height: 600px;
+}
+
+/* Mobile ad styles */
+.mobile-ad {
+    display: none;
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
 }
 
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
+    }
+
+    .desktop-ad {
+        display: none;
+    }
+
+    .mobile-ad {
+        display: block;
+    }
+
+    .col-md-2 {
+        display: none;
+    }
+
+    .col-md-8 {
+        width: 100%;
     }
 
     .image-section img {
