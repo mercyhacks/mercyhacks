@@ -1,0 +1,23 @@
+/* Base styles for favicon canvas */
+.favicon-canvas {
+    background: #4A6FFF;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-weight: 700;
+}
+
+/* Text content */
+.favicon-text {
+    font-size: 60%;
+    letter-spacing: -0.05em;
+}
+
+/* Dot styling */
+.favicon-dot {
+    color: #FFD700;
+} 

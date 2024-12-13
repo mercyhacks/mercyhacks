@@ -1,11 +1,16 @@
 const avatars = [
     'G_Jrj8zV.jpg',
     '90_4uoKp.jpg',
+    'E5K9Msjv.png'
 ];
 
 function setInitialAvatar() {
     const avatarImg = document.querySelector('.image-section img');
-    avatarImg.src = 'images/G_Jrj8zV.jpg';
+    if (window.innerWidth <= 768) {
+        avatarImg.src = 'images/E5K9Msjv.png';
+    } else {
+        avatarImg.src = 'images/G_Jrj8zV.jpg';
+    }
 }
 
 function setGeneratedAvatar() {
@@ -15,6 +20,8 @@ function setGeneratedAvatar() {
 
 document.addEventListener('DOMContentLoaded', function() {
     setInitialAvatar();
+    
+    window.addEventListener('resize', setInitialAvatar);
     
     // Hide both key container and instructions initially
     document.querySelector('.key-container').style.display = 'none';
@@ -74,7 +81,7 @@ function handleGenerate() {
     codeBlock.textContent = codeTemplate;
     
     // Update title
-    document.getElementById('mainTitle').textContent = 'Fusor Hacks';
+    document.getElementById('mainTitle').textContent = 'Cursor Hacks';
     
     // Hide generate button and subtitle
     document.getElementById('generateBtn').style.display = 'none';

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+    <style>
+        body {
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        #download-all {
+            margin: 20px;
+            padding: 10px 20px;
+            background: #4A6FFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Preview canvas */
+        #preview {
+            margin: 20px;
+            border: 1px solid #ccc;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAYdEVYdFRpdGxlAENhbnZhcyBUcmFuc3BhcmVuY3n5uPjlAAAAFHRFWHRBdXRob3IASmFrdWIgU3RlaW5lcub79y8AAABQSURBVDiNY2AYBaNgFIyCUTAKRsEoGAX0BkwMDAwMjIyMB5gYGBgYuLi4DjAzMzMwMjIeYGVlPcDCwnKAjY3tACcn5wEeHp4DfHx8BwQEBA+MAgAx5QsXz2vmJAAAAABJRU5ErkJggg==');
+        }
+    </style>
+</head>
+<body>
+    <button id="download-all">Download All Favicons</button>
+    <canvas id="preview" width="512" height="512"></canvas>
+    
+    <script>
+        const sizes = [
+            { name: 'favicon-16x16', size: 16, shortText: true },
+            { name: 'favicon-32x32', size: 32, shortText: true },
+            { name: 'apple-touch-icon', size: 180, shortText: false },
+            { name: 'android-chrome-192x192', size: 192, shortText: false },
+            { name: 'android-chrome-512x512', size: 512, shortText: false }
+        ];
+        
+        function generateFavicon(size, useShortText = true) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Make background transparent
+            ctx.clearRect(0, 0, size, size);
+            
+            // Text
+            ctx.fillStyle = '#000000';
+            const fontSize = useShortText ? size * 0.4 : size * 0.15; // Back to original size
+            ctx.font = `bold ${fontSize}px Inter, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Calculate text width for positioning
+            const text = useShortText ? 'mh' : 'mercyhacks';
+            const textMetrics = ctx.measureText(text);
+            const textWidth = textMetrics.width;
+            
+            // Center the text with proper spacing
+            const centerX = size / 2;
+            const centerY = size / 2;
+            
+            if (useShortText) {
+                ctx.fillText(text, centerX - size * 0.05, centerY);
+                ctx.fillStyle = '#FFD700';
+                ctx.fillText('.', centerX + size * 0.2, centerY);
+            } else {
+                // Move text more to the right
+                ctx.fillText(text, centerX - textWidth * 0.05, centerY);
+                ctx.fillStyle = '#FFD700';
+                ctx.fillText('.', centerX + textWidth * 0.45, centerY);
+            }
+            
+            return canvas;
+        }
+        
+        function downloadFavicon(canvas, name) {
+            const link = document.createElement('a');
+            link.download = `${name}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Show preview
+        function updatePreview() {
+            const preview = document.getElementById('preview');
+            const ctx = preview.getContext('2d');
+            ctx.clearRect(0, 0, preview.width, preview.height);
+            const canvas = generateFavicon(512, false);
+            ctx.drawImage(canvas, 0, 0);
+        }
+        
+        document.getElementById('download-all').addEventListener('click', () => {
+            sizes.forEach(({name, size, shortText}) => {
+                const canvas = generateFavicon(size, shortText);
+                downloadFavicon(canvas, name);
+            });
+        });
+
+        // Initial preview
+        updatePreview();
+    </script>
+</body>
+</html>
