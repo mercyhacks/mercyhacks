@@ -74,7 +74,7 @@ function handleGenerate() {
     codeBlock.textContent = codeTemplate;
     
     // Update title
-    document.getElementById('mainTitle').textContent = 'Cursor Hacks';
+    document.getElementById('mainTitle').textContent = 'Fusor Hacks';
     
     // Hide generate button and subtitle
     document.getElementById('generateBtn').style.display = 'none';
