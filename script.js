@@ -1,24 +1,40 @@
-const avatars = [
-    'G_Jrj8zV.jpg',
-    '90_4uoKp.jpg',
-    'E5K9Msjv.png'
-];
-
 function setInitialAvatar() {
     const avatarImg = document.querySelector('.image-section img');
-    if (window.innerWidth <= 768) {
-        avatarImg.src = 'images/E5K9Msjv.png';
+    // Check if we're in the hacks directory by looking at the current path
+    const isInHacksDir = window.location.pathname.includes('/hacks/');
+    const imagePath = isInHacksDir ? '../' : '';
+    
+    // Check if we're on the cursorai page
+    const isCursorAIPage = window.location.pathname.includes('cursorai.html');
+    
+    if (isCursorAIPage) {
+        // Cursor AI page specific images
+        if (window.innerWidth <= 768) {
+            avatarImg.src = `${imagePath}images/YPD8ZbZ8.png`;
+        } else {
+            avatarImg.src = `${imagePath}images/90_4uoKp.jpg`;
+        }
     } else {
-        avatarImg.src = 'images/G_Jrj8zV.jpg';
+        // Index page images
+        if (window.innerWidth <= 768) {
+            avatarImg.src = `${imagePath}images/E5K9Msjv.png`;
+        } else {
+            avatarImg.src = `${imagePath}images/E5K9Msjv.png`;  // Using same image for both sizes on index
+        }
     }
 }
 
 function setGeneratedAvatar() {
     const avatarImg = document.querySelector('.image-section img');
-    avatarImg.src = 'images/90_4uoKp.jpg';
+    // Check if we're in the hacks directory by looking at the current path
+    const isInHacksDir = window.location.pathname.includes('/hacks/');
+    const imagePath = isInHacksDir ? '../' : '';
+    
+    avatarImg.src = `${imagePath}images/90_4uoKp.jpg`;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    loadHeader();
     setInitialAvatar();
     
     window.addEventListener('resize', setInitialAvatar);
@@ -68,12 +84,12 @@ function generateHexKey() {
 
 function handleGenerate() {
     // Open ad in new tab
-    window.open('https://www.profitablecpmrate.com/qp0q2thd9n?key=79cc4a35a7e1fce8f3be5b601856e327', '_blank');
+    window.open('https://dearesthydrogen.com/ytc4qgjg9?key=b05e412b22b0904a4fd90ce8391d5f37', '_blank');
     
     // Continue with key generation
     const mercyHacksKey = generateUUID();
     document.getElementById('uuidKey').value = mercyHacksKey;
-    
+    document.querySelector('.text-section').classList.add('code-generated');
     // Rest of your existing code
     const codeBlock = document.querySelector('.code-block');
     const codeTemplate = `{
@@ -103,6 +119,10 @@ function handleGenerate() {
 }
 
 function copyToClipboard(elementId) {
+    // Open ad in new tab
+    window.open('https://dearesthydrogen.com/ytc4qgjg9?key=b05e412b22b0904a4fd90ce8391d5f37', '_blank');
+    
+    // Continue with copy functionality
     const element = document.getElementById(elementId);
     element.select();
     document.execCommand('copy');
@@ -113,4 +133,26 @@ function copyToClipboard(elementId) {
     setTimeout(() => {
         button.textContent = originalText;
     }, 1000);
+}
+
+async function loadHeader() {
+    try {
+        const isInSubDir = window.location.pathname.includes('/hacks/') || window.location.pathname.includes('/blogs/');
+        const headerPath = isInSubDir ? '../components/header.html' : './components/header.html';
+        
+        const response = await fetch(headerPath);
+        const html = await response.text();
+        
+        // Insert the header at the start of main-container instead of before main
+        const mainContainer = document.querySelector('.main-container');
+        mainContainer.insertAdjacentHTML('afterbegin', html);
+        
+        // Remove the existing logo if it exists
+        const existingLogo = document.querySelector('.content-wrapper .logo');
+        if (existingLogo) {
+            existingLogo.remove();
+        }
+    } catch (error) {
+        console.error('Error loading header:', error);
+    }
 } 
