@@ -13,7 +13,22 @@ body {
     min-height: 100vh;
     padding-top: 3rem;
 }
+.instructions-list .generate-btn.smaller {
+    padding: 2px 6px !important;
+    font-size: 0.75em !important;
+    margin: 0 3px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: unset !important;
+    height: auto !important;
+    min-width: unset !important;
+    width: auto !important;
+}
 
+.instructions-list .generate-btn.smaller i {
+    margin-right: 4px !important;
+    font-size: 0.9em !important;
+}
 .main-container {
     background: white;
     border-radius: 32px;
@@ -711,4 +726,21 @@ h1 {
     .section-title h2 {
         font-size: 1.5rem;
     }
+}
+
+.manual-link-message {
+    display: block;
+    font-size: 0.85em;
+    color: #666;
+    margin: 15px;
+}
+
+.manual-link {
+    color: var(--primary-blue);
+    word-break: break-all;
+    cursor: pointer;
+}
+
+.manual-link:hover {
+    text-decoration: underline;
 }
