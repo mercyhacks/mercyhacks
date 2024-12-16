@@ -96,7 +96,9 @@ function handleGenerate() {
         "telemetry.machineId": "${mercyHacksKey}",
         "telemetry.macMachineId": "${mercyHacksKey}",
         "telemetry.devDeviceId": "${mercyHacksKey}",
-        "telemetry.sqmId": "${mercyHacksKey}"
+        "telemetry.sqmId": "${mercyHacksKey}",
+        "lastModified": "2024-01-01T00:00:00.000Z",
+        "version": "1.0.1"
     }`;
     codeBlock.textContent = codeTemplate;
     
